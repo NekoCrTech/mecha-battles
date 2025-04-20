@@ -25,3 +25,9 @@ FVector UUtilitiesLibrary::GetColorByTileType(ETileType TileType)
 	}
 	return FVector(0, 0, 0);
 }
+
+bool UUtilitiesLibrary::IsTileTypeWalkable(ETileType InTileType)
+{
+	if (InTileType == ETileType::None || InTileType == ETileType::Obstacle) return false;
+	return true;
+}

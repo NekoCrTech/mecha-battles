@@ -2,9 +2,11 @@
 
 
 #include "Grid/Grid.h"
-
-#include "Components/InstancedStaticMeshComponent.h"
 #include "Grid/GridModifier.h"
+#include "Grid/GridVisual.h"
+#include "Grid/GridMeshInst.h"
+#include "Components/ChildActorComponent.h"
+#include "Components/InstancedStaticMeshComponent.h"
 #include "Utilities/UtilitiesLibrary.h"
 
 #define ECC_GROUND ECC_GameTraceChannel1
@@ -13,34 +15,62 @@
 AGrid::AGrid()
 {
 	PrimaryActorTick.bCanEverTick = true;
+	
+	ChildActorGridVisual = CreateDefaultSubobject<UChildActorComponent>("ChildActorGridVisual");
+}
 
-	InstancedStaticMeshComponent = CreateDefaultSubobject<UInstancedStaticMeshComponent>("InstancedStaticMesh");
+void AGrid::OnConstruction(const FTransform& Transform)
+{
+	Super::OnConstruction(Transform);
+
+	if (GridVisualClass)
+	{
+		ChildActorGridVisual->SetChildActorClass(GridVisualClass);
+		GridVisual = Cast<AGridVisual>(ChildActorGridVisual->GetChildActor());
+	}
 }
 
 
 void AGrid::SpawnGrid(const FVector CenterLocation, const FVector TileSize, const FIntPoint TileCount, bool bUseEnvironment)
 {
-	GridCenterLocation = GetActorLocation();
+	if (!ChildActorGridVisual)
+	{
+		UE_LOG(LogTemp, Error, TEXT("ChildActorGridVisual is nullptr!"));
+		return;
+	}
+
+	
+	if (!GridVisual)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("GridVisual not yet spawned — calling CreateChildActor()"));
+		ChildActorGridVisual->CreateChildActor();
+		GridVisual = Cast<AGridVisual>(ChildActorGridVisual->GetChildActor());
+	
+		if (!GridVisual)
+		{
+			UE_LOG(LogTemp, Error, TEXT("Failed to create child actor."));
+			return;
+		}
+	}
+	
+	
+	GridCenterLocation = CenterLocation;
 	GridTileSize = TileSize;
 	GridTileCount = TileCount;
-
+	
 	DestroyGrid();
-
-	InstancedStaticMeshComponent->SetStaticMesh(GridShapeData.FlatMesh);
-	InstancedStaticMeshComponent->SetMaterial(0, GridShapeData.FlatBorderMaterial);
-
-	SetGridOffsetFromGround();
-
+	
+	GridVisual->InitializeGridVisual(this);
+	
 	CalculateCenterAndBottomLeft(GridCenterLocation, GridBottomLeftCorner);
-
+	
 	for (int i = 0; i < (GridTileCount.X - 1); i++)
 	{
 		int j = (i % 2 != 0 ? 1 : 0);
 		for ( j; j < (GridTileCount.Y * 2 - 1); j++)
 		{
-			//FIntPoint LoopIndex = FIntPoint(i, j);
 			SpawnInstance(FIntPoint(i,j), bUseEnvironment);
-
+	
 			j=j+1;
 		}
 	}
@@ -48,7 +78,9 @@ void AGrid::SpawnGrid(const FVector CenterLocation, const FVector TileSize, cons
 
 void AGrid::DestroyGrid()
 {
-	InstancedStaticMeshComponent->ClearInstances();
+	GridTiles.Empty();
+	
+	GridVisual->DestroyGridVisual();
 }
 
 void AGrid::CalculateCenterAndBottomLeft(FVector& Center, FVector& BottomLeft)
@@ -132,6 +164,12 @@ bool AGrid::TraceForGround(FVector& InLocation, FVector& HitLocation, ETileType&
 void AGrid::BeginPlay()
 {
 	Super::BeginPlay();
+
+	//SpawnGrid(GridCenterLocation,GridTileSize,GridTileCount,true);
+}
+
+void AGrid::GetCursorLocationOnGrid()
+{
 }
 
 void AGrid::SpawnInstance(FIntPoint Index, bool bUseEnvironment)
@@ -148,27 +186,25 @@ void AGrid::SpawnInstance(FIntPoint Index, bool bUseEnvironment)
 		FVector HitLocation;
 		ETileType TileType = ETileType::None;
 		TraceForGround(LocationTemp, HitLocation, TileType);
+		
 		DataTemp.TileType = TileType;
 		TileTransform.SetTranslation(HitLocation);
 		DataTemp.Transform = TileTransform;
 
 		AddGridTile(DataTemp);
-		InstancedStaticMeshComponent->AddInstance(TileTransform);
 		return;
 	}
-
+	
 	TileTransform.SetTranslation(LocationTemp);
 	DataTemp.Transform = TileTransform;
 	DataTemp.TileType = ETileType::Normal;
 	AddGridTile(DataTemp);
-
-	InstancedStaticMeshComponent->AddInstance(TileTransform);
-
 }
 
 void AGrid::AddGridTile(FTileData Data)
 {
 	GridTiles.Add(Data.Index, Data);
+	GridVisual->UpdateTileVisual(Data);
 }
 
 int32 AGrid::AdjustForOdd(int32 GridCount)
@@ -176,23 +212,12 @@ int32 AGrid::AdjustForOdd(int32 GridCount)
 	return GridCount % 2 != 0 ? 1 : 0;
 }
 
-void AGrid::SetGridOffsetFromGround(float Offset)
-{
-	OffsetFromGround = Offset;
-	InstancedStaticMeshComponent->SetWorldLocation(FVector(0,0,OffsetFromGround));
-}
-
-bool AGrid::IsTileTypeWalkable(ETileType InTileType)
-{
-	if (InTileType == ETileType::None || InTileType == ETileType::Obstacle) return false;
-	return true;
-}
-
-
 // Called every frame
 void AGrid::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 }
+
+
 

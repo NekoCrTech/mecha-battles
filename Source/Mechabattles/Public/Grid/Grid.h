@@ -8,6 +8,8 @@
 #include "GameFramework/Actor.h"
 #include "Grid.generated.h"
 
+class AGridVisual;
+
 UCLASS()
 class MECHABATTLES_API AGrid : public AActor
 {
@@ -16,15 +18,19 @@ class MECHABATTLES_API AGrid : public AActor
 public:	
 	AGrid();
 	virtual void Tick(float DeltaTime) override;
-
+	virtual void OnConstruction(const FTransform& Transform) override;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UInstancedStaticMeshComponent> InstancedStaticMeshComponent;
+	TObjectPtr<UChildActorComponent> ChildActorGridVisual;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Data")
+	TSubclassOf<AActor> GridVisualClass;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "GridData")
+	TObjectPtr<AGridVisual> GridVisual;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category= "GridData")
 	FGridShapeData GridShapeData;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GridData")
-	float OffsetFromGround = 2.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GridData")
 	TMap<FIntPoint, FTileData> GridTiles;
@@ -43,10 +49,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	bool TraceForGround(FVector& InLocation, FVector& HitLocation, ETileType& TileType);
-
-protected:
-	virtual void BeginPlay() override;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GridData")
 	FVector GridCenterLocation = FVector(0, 0, 0);
 
@@ -59,7 +62,8 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GridData")
 	FVector GridBottomLeftCorner = FVector(0, 0, 0);
 
-private:
+	UFUNCTION(BlueprintCallable)
+	void GetCursorLocationOnGrid();
 
 	UFUNCTION()
 	void SpawnInstance(FIntPoint Index, bool bUseEnvironment);
@@ -67,11 +71,13 @@ private:
 	UFUNCTION()
 	void AddGridTile(FTileData Data);
 
+	UFUNCTION()
 	int32 AdjustForOdd(int32 GridCount);
 
-	void SetGridOffsetFromGround(float Offset = 2.f);
-
-	bool IsTileTypeWalkable(ETileType InTileType);
-
+protected:
+	virtual void BeginPlay() override;
+	
+	
+	
 
 };

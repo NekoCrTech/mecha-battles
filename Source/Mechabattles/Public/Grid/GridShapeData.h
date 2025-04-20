@@ -23,9 +23,6 @@ struct FGridShapeData : public FTableRowBase
 	TObjectPtr<UStaticMesh> FlatMesh = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UMaterialInstance> FlatBorderMaterial = nullptr;
-	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UMaterialInstance> FlatFilledMaterial = nullptr;
+	TObjectPtr<UMaterialInstance> FlatMaterial = nullptr;
 };
 

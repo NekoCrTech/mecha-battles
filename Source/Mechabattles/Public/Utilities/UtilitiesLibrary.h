@@ -21,5 +21,8 @@ public:
 
 	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "Utilities")
 	static FVector GetColorByTileType(ETileType TileType);
+
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "Utilities")
+	static bool IsTileTypeWalkable(ETileType InTileType);
 	
 };

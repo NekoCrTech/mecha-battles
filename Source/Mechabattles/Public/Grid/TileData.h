@@ -13,10 +13,20 @@ enum class ETileType : uint8
 	Obstacle	UMETA(DisplayName = "Obstacle"),
 };
 
+UENUM(BlueprintType)
+enum class ETileState : uint8
+{
+	None		UMETA(DisplayName = "None"),
+	Hovered		UMETA(DisplayName = "Hovered"),
+	Selected	UMETA(DisplayName = "Selected"),
+};
+
 USTRUCT(BlueprintType)
 struct FTileData : public FTableRowBase
 {
 	GENERATED_BODY()
+
+public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FIntPoint Index = FIntPoint(-999, -999);
@@ -26,4 +36,7 @@ struct FTileData : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FTransform Transform = FTransform();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TArray<ETileState> States = TArray<ETileState>();
 };
