@@ -48,8 +48,8 @@ AMyCharacter::AMyCharacter()
 	CameraBoom->bInheritPitch = false;
 	CameraBoom->bInheritRoll = false;
 	CameraBoom->SetupAttachment(RootComponent);
-	CameraBoom->TargetArmLength = 1000.0f; // The camera follows at this distance behind the character
-	CameraBoom->SetRelativeRotation(FRotator( -65.0f, 0.0f,0.0f));
+	CameraBoom->TargetArmLength = 800.0f; // The camera follows at this distance behind the character
+	CameraBoom->SetRelativeRotation(FRotator( -40.0f, 0.0f,0.0f));
 
 	// Create a follow camera
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
