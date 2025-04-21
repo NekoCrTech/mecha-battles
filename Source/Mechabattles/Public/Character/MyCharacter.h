@@ -9,6 +9,7 @@
 #include "MyCharacter.generated.h"
 
 
+class UInventorySystem;
 class USpringArmComponent;
 class UCameraComponent;
 class UInputMappingContext;
@@ -73,6 +74,7 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+	//** Body Parts */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Appearence, meta = (AllowPrivateAccess = "true"))
 	FBodyParts BodyParts;
 

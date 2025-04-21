@@ -10,6 +10,7 @@
 #include "GameFramework/Controller.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Inventory/InventorySystem.h"
 #include "InputActionValue.h"
 
 // Sets default values
@@ -79,7 +80,6 @@ AMyCharacter::AMyCharacter()
 
 	Eyebrow = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Eyebrow"));
 	Eyebrow->SetupAttachment(GetMesh());
-	
 }
 
 void AMyCharacter::AttachBodyParts(USkeletalMeshComponent* BodyComponent)
