@@ -63,5 +63,9 @@ struct FItemStruct : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 StackSize = 64;
 
-	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanBeUsed = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bCanBeScraped = false;
 };
