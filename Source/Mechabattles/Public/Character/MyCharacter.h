@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
 #include "Character/BodyParts.h"
+#include "Delegates/DelegateCombinations.h"
 #include "MyCharacter.generated.h"
 
 
@@ -16,7 +17,8 @@ class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
 
-
+// Delegate signature
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnInputMappingContextChanged, UInputMappingContext*, NewMappingContext);
 
 UCLASS()
 class MECHABATTLES_API AMyCharacter : public ACharacter
@@ -37,6 +39,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void AttachBodyParts(USkeletalMeshComponent* BodyComponent);
+
+	// The delegate instance
+	UPROPERTY(BlueprintAssignable, Category = "Input")
+	FOnInputMappingContextChanged OnInputMappingContextChanged;
 
 protected:
 	
@@ -60,7 +66,7 @@ private:
 	
 	/** MappingContext */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
-	UInputMappingContext* OverworldMappingContext;
+	UInputMappingContext* WorldMappingContext;
 
 	/** Jump Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
