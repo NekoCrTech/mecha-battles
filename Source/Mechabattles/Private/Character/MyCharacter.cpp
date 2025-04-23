@@ -104,7 +104,8 @@ void AMyCharacter::BeginPlay()
 	Hair -> AttachToComponent(GetMesh(),AttachmentRules, FName("headSocket"));
 	Beard -> AttachToComponent(GetMesh(),AttachmentRules, FName("headSocket"));
 
-	
+	// Broadcast the delegate
+	OnInputMappingContextChanged.Broadcast(WorldMappingContext);
 }
 
 // Called every frame
@@ -143,7 +144,7 @@ void AMyCharacter::NotifyControllerChanged()
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
-			Subsystem->AddMappingContext(OverworldMappingContext, 0);
+			Subsystem->AddMappingContext(WorldMappingContext, 0);
 		}
 	}
 }
