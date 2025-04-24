@@ -19,6 +19,7 @@ enum class ETileState : uint8
 	None		UMETA(DisplayName = "None"),
 	Hovered		UMETA(DisplayName = "Hovered"),
 	Selected	UMETA(DisplayName = "Selected"),
+	IsNeighbor	UMETA(DisplayName = "IsNeighbor"),
 };
 
 USTRUCT(BlueprintType)
