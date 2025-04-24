@@ -5,6 +5,9 @@
 #include "CoreMinimal.h"
 #include "InventoryData.generated.h"
 
+class AItemEffect;
+class AItemActor;
+
 UENUM(BlueprintType)
 enum class ERarity : uint8
 {
@@ -58,7 +61,10 @@ struct FItemStruct : public FTableRowBase
 	UTexture2D* Thumbnail = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<AActor> ItemClass = TSubclassOf<AActor>();
+	TSubclassOf<AItemActor> ItemClass = TSubclassOf<AItemActor>();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TSubclassOf<AItemEffect> ItemEffect = TSubclassOf<AItemEffect>();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 StackSize = 64;

@@ -11,7 +11,8 @@ enum class EInventoryActions : uint8
 	None	UMETA(DisplayName = "None"),
 	Scrap	UMETA(DisplayName = "Scrap"),
 	Use		UMETA(DisplayName = "Use"),
-	Drop	UMETA(DisplayName = "Drop")
+	Drop	UMETA(DisplayName = "Drop"),
+	Destroy	UMETA(DisplayName = "Destroy"),
 };
 
 USTRUCT(BlueprintType)
