@@ -11,6 +11,12 @@ enum class ETileType : uint8
 	None	UMETA(DisplayName = "None"),
 	Normal	UMETA(DisplayName = "Normal"),
 	Obstacle	UMETA(DisplayName = "Obstacle"),
+	DoubleCost UMETA(DisplayName = "Double Cost"),
+	TripleCost UMETA(DisplayName = "Triple Cost"),
+	Hollow	UMETA(DisplayName = "Hollow"),
+	Water	UMETA(DisplayName = "Water"),
+	Lava	UMETA(DisplayName = "Lava"),
+	
 };
 
 UENUM(BlueprintType)
