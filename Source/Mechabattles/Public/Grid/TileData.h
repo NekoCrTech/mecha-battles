@@ -21,6 +21,8 @@ enum class ETileState : uint8
 	Selected	UMETA(DisplayName = "Selected"),
 	IsNeighbor	UMETA(DisplayName = "IsNeighbor"),
 	IsInPath		UMETA(DisplayName = "IsInPath"),
+	IsDiscovered	UMETA(DisplayName = "IsDiscovered"),
+	IsAnalysed	UMETA(DisplayName = "IsAnalysed"),
 };
 
 USTRUCT(BlueprintType)
