@@ -3,24 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "MechaData.h"
 #include "GameFramework/Actor.h"
-#include "MechaActor.generated.h"
+#include "MechaPart.generated.h"
 
 UCLASS()
-class MECHABATTLES_API AMechaActor : public AActor
+class MECHABATTLES_API AMechaPart : public AActor
 {
 	GENERATED_BODY()
 	
-public:	
+public:
 	
-	AMechaActor();
-	virtual void Tick(float DeltaTime) override;
+	AMechaPart();
 
 protected:
 	
 	virtual void BeginPlay() override;
-
 
 private:
 
@@ -30,10 +27,5 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Components, meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<USceneComponent> Root;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Components, meta = (AllowPrivateAccess = "true"))
-	TObjectPtr<USceneCaptureComponent2D> CaptureComponent;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Data, meta = (AllowPrivateAccess = "true"))
-	FMechaData Data;
 
 };
