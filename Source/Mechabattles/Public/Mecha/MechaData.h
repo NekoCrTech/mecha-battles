@@ -95,6 +95,43 @@ public:
 };
 
 USTRUCT(BlueprintType)
+struct FMechaStats : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats, meta = (ToolTip = "Boosts weapon damage and strength-based abilities" ))
+	int32 Power = 10;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats, meta = (ToolTip = "Affects accuracy, hacking success, and skill activation" ))
+	int32 Control = 10;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats, meta = (ToolTip = "Reduces incoming damage and improves shield strength" ))
+	int32 Defense = 10;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats, meta = (ToolTip = "Influences movement range and evasion" ))
+	int32 Mobility = 10;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Stats, meta = (ToolTip = "Reduces Technic cooldowns and boosts heat/energy efficiency" ))
+	int32 Cooling = 10;
+
+	// --- Constructors ---
+
+	// Default constructor
+	FMechaStats() {}
+
+	// Constructor: set all stats to the same value
+	FMechaStats(int32 InValue)
+		: Power(InValue), Control(InValue), Defense(InValue), Mobility(InValue), Cooling(InValue)
+	{}
+
+	// Constructor: set each stat individually
+	FMechaStats(int32 InPower, int32 InControl, int32 InDefense, int32 InMobility, int32 InCooling)
+		: Power(InPower), Control(InControl), Defense(InDefense), Mobility(InMobility), Cooling(InCooling)
+	{}
+	
+};
+
+USTRUCT(BlueprintType)
 struct FMechaData : public FTableRowBase
 {
 	GENERATED_BODY()
