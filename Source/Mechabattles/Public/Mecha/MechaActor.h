@@ -20,8 +20,11 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FIntPoint IndexOnGrid = FIntPoint(-999, -999);
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	ESelectedState SelectedState = ESelectedState::None;
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category=Bools)
+	bool bIsHovered = false;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite,Category=Bools)
+	bool bIsSelected = false;
 
 protected:
 	

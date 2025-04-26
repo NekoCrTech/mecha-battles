@@ -17,13 +17,6 @@ enum class EEquipmentSlot : uint8
 	Core	UMETA(DisplayName = "Core")
 };
 
-UENUM(BlueprintType)
-enum class ESelectedState : uint8
-{
-	None	UMETA(DisplayName = "None"),
-	Hovered	UMETA(DisplayName = "Hovered"),
-	Selected	UMETA(DisplayName = "Selected"),
-};
 
 USTRUCT(BlueprintType)
 struct FMechaEquipment : public FTableRowBase
