@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "TileData.generated.h"
 
+class AMechaActor;
+
 UENUM(BlueprintType)
 enum class ETileType : uint8
 {
@@ -49,4 +51,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<ETileState> States = TArray<ETileState>();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AMechaActor* MechaOnTile = nullptr;
 };

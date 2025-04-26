@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Grid/TileData.h"
-#include "Grid/Grid.h"
+#include "Grid/Grid_Bugged.h"
 #include "Grid/GridMeshInst.h"
 #include "GridVisual.generated.h"
 
@@ -32,13 +32,13 @@ public:
 	AGridMeshInst* GridMeshInst;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Grid")
-	AGrid* Grid;
+	AGrid_Bugged* Grid;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Parameters")
 	float OffsetFromGround = 2.f;
 
 	UFUNCTION(BLueprintCallable)
-	void InitializeGridVisual(AGrid* InGrid);
+	void InitializeGridVisual(AGrid_Bugged* InGrid);
 
 	UFUNCTION(BlueprintCallable)
 	void DestroyGridVisual() const;

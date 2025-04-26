@@ -17,6 +17,12 @@ public:
 	AMechaActor();
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	FIntPoint IndexOnGrid = FIntPoint(-999, -999);
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	ESelectedState SelectedState = ESelectedState::None;
+
 protected:
 	
 	virtual void BeginPlay() override;

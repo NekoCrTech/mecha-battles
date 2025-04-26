@@ -24,11 +24,11 @@ struct FInventoryActionStruct : public FTableRowBase
 	EInventoryActions InventoryAction = EInventoryActions::None;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FKey Key;
+	FKey Key = FKey();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FText Text;
+	FText Text = FText();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UTexture2D* Texture;
+	UTexture2D* Texture = nullptr;
 };
