@@ -126,6 +126,9 @@ struct FSecondaryMechaStats : public FTableRowBase
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
 	TArray<ETileType> ValidTileTypes;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
+	int32 MP_Current = 3;
 };
 
 USTRUCT(BlueprintType)

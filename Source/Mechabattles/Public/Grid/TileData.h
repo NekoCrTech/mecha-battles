@@ -31,6 +31,7 @@ enum class ETileState : uint8
 	IsInPath		UMETA(DisplayName = "IsInPath"),
 	IsDiscovered	UMETA(DisplayName = "IsDiscovered"),
 	IsAnalysed	UMETA(DisplayName = "IsAnalysed"),
+	IsReachable	UMETA(DisplayName = "IsReachable"),
 };
 
 USTRUCT(BlueprintType)
