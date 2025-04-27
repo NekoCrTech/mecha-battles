@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "MechaData.generated.h"
 
+enum class ETileType : uint8;
 class AMechaPart;
 
 UENUM(BlueprintType)
@@ -42,20 +43,6 @@ struct FMechaEquipment : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Equipment)
 	AMechaPart* Core = nullptr;
-};
-
-USTRUCT(BlueprintType)
-struct FEquipmentData : public FTableRowBase
-{
-	GENERATED_BODY()
-
-public:
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Equipment)
-	FName EquipmentID;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Equipment)
-	EEquipmentSlot EquipmentSlot = EEquipmentSlot::Head;
 };
 
 USTRUCT(BlueprintType)
@@ -132,6 +119,16 @@ struct FMechaStats : public FTableRowBase
 };
 
 USTRUCT(BlueprintType)
+struct FSecondaryMechaStats : public FTableRowBase
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
+	TArray<ETileType> ValidTileTypes;
+};
+
+USTRUCT(BlueprintType)
 struct FMechaData : public FTableRowBase
 {
 	GENERATED_BODY()
@@ -145,6 +142,8 @@ public:
 	FMechaAssets MechaAssets;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Data)
-	FMechaEquipment MechaEquipment;
-	
+	FMechaStats MechaStats;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Data)
+	FSecondaryMechaStats SecondaryMechaStats;
 };
