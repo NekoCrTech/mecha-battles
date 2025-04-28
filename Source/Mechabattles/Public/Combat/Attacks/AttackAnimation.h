@@ -24,7 +24,7 @@ public:
 	FIntPoint OriginIndex = FIntPoint(-999,-999);
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Location", meta = (ExposeOnSpawn = "true"))
-	TArray<FIntPoint> TargetIndexes;
+	TArray<FIntPoint> TargetIndexes = TArray<FIntPoint>();
 
 protected:
 	// Called when the game starts or when spawned
