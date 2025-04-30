@@ -39,6 +39,18 @@ struct FAttackAction : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
 	FIntPoint RangeMinMax = FIntPoint(0);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
+	bool bRequireLineOfSight = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
+	float LineOfSight_HeightFromGround = 150.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
+	float LineOfSight_OffsetFromCenter = 1/4;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
+	bool LineOfSight_DrawDebugLine = false;
 	
 };
 
