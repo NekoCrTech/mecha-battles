@@ -30,6 +30,25 @@ struct FAttackAssets : public FTableRowBase
 };
 
 USTRUCT(BlueprintType)
+struct FLineOfSight : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
+	bool bRequireLineOfSight = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
+	float LineOfSight_HeightFromGround = 150.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
+	float LineOfSight_OffsetFromCenter = 0.25f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
+	bool LineOfSight_DrawDebugLine = false;
+	
+};
+
+USTRUCT(BlueprintType)
 struct FAttackAction : public FTableRowBase
 {
 	GENERATED_BODY()
@@ -41,18 +60,11 @@ struct FAttackAction : public FTableRowBase
 	FIntPoint RangeMinMax = FIntPoint(0);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
-	bool bRequireLineOfSight = true;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
-	float LineOfSight_HeightFromGround = 150.f;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
-	float LineOfSight_OffsetFromCenter = 1/4;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
-	bool LineOfSight_DrawDebugLine = false;
+	FLineOfSight LineOfSight = FLineOfSight();
 	
 };
+
+
 
 USTRUCT(BlueprintType)
 struct FAttackData : public FTableRowBase
@@ -67,5 +79,8 @@ struct FAttackData : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attack)
 	FAttackAction Action = FAttackAction();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attack)
+	FAttackAction ActionAoe = FAttackAction();
 	
 };
