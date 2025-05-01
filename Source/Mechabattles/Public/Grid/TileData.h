@@ -32,7 +32,8 @@ enum class ETileState : uint8
 	IsDiscovered	UMETA(DisplayName = "IsDiscovered"),
 	IsAnalysed	UMETA(DisplayName = "IsAnalysed"),
 	IsReachable	UMETA(DisplayName = "IsReachable"),
-	IsAttackRange UMETA(DisplayName = "IsAttackRange")
+	IsAttackRange UMETA(DisplayName = "IsAttackRange"),
+	IsAoeRange UMETA(DisplayName = "IsAoeRange"),
 };
 
 USTRUCT(BlueprintType)
