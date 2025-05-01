@@ -4,13 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Mecha/MechaData.h"
-#include "UObject/NoExportTypes.h"
 #include "Technic.generated.h"
 
 /**
  * 
  */
-UCLASS()
+UCLASS(BlueprintType)
 class MECHABATTLES_API UTechnic : public UObject
 {
 	GENERATED_BODY()
@@ -25,5 +24,8 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FMechaStats BonusStats;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UTexture2D* Thumbnail;
 	
 };

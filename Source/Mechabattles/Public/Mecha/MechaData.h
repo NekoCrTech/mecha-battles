@@ -24,7 +24,7 @@ struct FMechaEquipment : public FTableRowBase
 {
 	GENERATED_BODY()
 
-	public:
+public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Equipment)
 	AMechaPart* Head = nullptr;
