@@ -22,9 +22,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Location", meta = (ExposeOnSpawn = "true"))
 	FIntPoint OriginIndex = FIntPoint(-999,-999);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Location", meta = (ExposeOnSpawn = "true"))
+	FIntPoint TargetIndex = FIntPoint(-999,-999);
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Location", meta = (ExposeOnSpawn = "true"))
-	TArray<FIntPoint> TargetIndexes = TArray<FIntPoint>();
+	TArray<FIntPoint> AttackedIndexes = TArray<FIntPoint>();
 
 protected:
 	// Called when the game starts or when spawned
