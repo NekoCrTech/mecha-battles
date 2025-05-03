@@ -27,6 +27,9 @@ struct FAttackAssets : public FTableRowBase
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
 	TSubclassOf<AAttackAnimation> AttackAnimation = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Asset)
+	TObjectPtr<UTexture2D> Texture = nullptr;
 };
 
 USTRUCT(BlueprintType)
