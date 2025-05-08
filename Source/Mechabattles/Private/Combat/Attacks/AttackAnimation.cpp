@@ -11,6 +11,11 @@ AAttackAnimation::AAttackAnimation()
 
 }
 
+void AAttackAnimation::AttackAnimationHitTile(AAttackAnimation* Animation, FIntPoint Index)
+{
+	OnAttackAnimationHitTile.Broadcast(Animation, Index);
+}
+
 // Called when the game starts or when spawned
 void AAttackAnimation::BeginPlay()
 {

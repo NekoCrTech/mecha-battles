@@ -8,7 +8,9 @@
 
 class AGrid;
 
-UCLASS()
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnAttackAnimationHitTile, AAttackAnimation*, AttackAnim, FIntPoint, TargetIndex);
+
+UCLASS(Blueprintable)
 class MECHABATTLES_API AAttackAnimation : public AActor
 {
 	GENERATED_BODY()
@@ -16,6 +18,9 @@ class MECHABATTLES_API AAttackAnimation : public AActor
 public:	
 	// Sets default values for this actor's properties
 	AAttackAnimation();
+
+	UPROPERTY(BlueprintAssignable, Category = "Combat")
+	FOnAttackAnimationHitTile OnAttackAnimationHitTile;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "References", meta = (ExposeOnSpawn = "true"))
 	AGrid* Grid = nullptr;
@@ -28,6 +33,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Location", meta = (ExposeOnSpawn = "true"))
 	TArray<FIntPoint> AttackedIndexes = TArray<FIntPoint>();
+
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void AttackAnimationHitTile(AAttackAnimation* Animation, FIntPoint Index);
 
 protected:
 	// Called when the game starts or when spawned
