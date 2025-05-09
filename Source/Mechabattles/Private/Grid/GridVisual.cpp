@@ -38,7 +38,7 @@ void AGridVisual::BeginPlay()
 	Super::BeginPlay();
 }
 
-void AGridVisual::InitializeGridVisual(AGrid* InGrid)
+void AGridVisual::InitializeGridVisual(AGrid_Bugged* InGrid)
 {
 	if (GridMeshInst)
 	{

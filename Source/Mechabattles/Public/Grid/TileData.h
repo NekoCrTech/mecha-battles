@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "TileData.generated.h"
 
+class AMechaActor;
+
 UENUM(BlueprintType)
 enum class ETileType : uint8
 {
@@ -29,6 +31,9 @@ enum class ETileState : uint8
 	IsInPath		UMETA(DisplayName = "IsInPath"),
 	IsDiscovered	UMETA(DisplayName = "IsDiscovered"),
 	IsAnalysed	UMETA(DisplayName = "IsAnalysed"),
+	IsReachable	UMETA(DisplayName = "IsReachable"),
+	IsAttackRange UMETA(DisplayName = "IsAttackRange"),
+	IsAoeRange UMETA(DisplayName = "IsAoeRange"),
 };
 
 USTRUCT(BlueprintType)
@@ -49,4 +54,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<ETileState> States = TArray<ETileState>();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AMechaActor* MechaOnTile = nullptr;
 };
