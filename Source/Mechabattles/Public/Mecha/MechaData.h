@@ -131,6 +131,9 @@ public:
 	int32 MP_Current = 3;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
+	int32 MP_Max = 3;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
 	FVector2D HpCurrentMax = FVector2D(50);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
