@@ -128,16 +128,25 @@ public:
 	TArray<ETileType> ValidTileTypes;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
+	TArray<int32> AvailableAttacks = TArray<int32>();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
 	int32 MP_Current = 3;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
 	int32 MP_Max = 3;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
-	FVector2D HpCurrentMax = FVector2D(50);
+	int32 HP_Current = 50;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
-	TArray<int32> AvailableAttacks = TArray<int32>();
+	int32 HP_Max = 50;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
+	int32 AP_Current = 3;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = SecondaryStats)
+	int32 AP_Max = 3;
 };
 
 USTRUCT(BlueprintType)

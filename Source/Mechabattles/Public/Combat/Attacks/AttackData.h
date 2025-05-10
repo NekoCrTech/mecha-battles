@@ -107,6 +107,15 @@ struct FAttackImpactReal : public FTableRowBase
 	int32 ModifierHp = 0;
 };
 
+USTRUCT(BlueprintType)
+struct FAttackRequirements : public FTableRowBase
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Data)
+	int32 Cost_AP = 1;
+};
+
 
 
 USTRUCT(BlueprintType)
@@ -128,5 +137,7 @@ struct FAttackData : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attack)
 	FAttackImpact Impact = FAttackImpact();
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attack)
+	FAttackRequirements Requirements = FAttackRequirements();	
 };
