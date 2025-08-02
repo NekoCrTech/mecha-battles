@@ -9,7 +9,7 @@
 /**
  * 
  */
-UCLASS(BlueprintType)
+UCLASS(BlueprintType, Blueprintable)
 class MECHABATTLES_API UTechnic : public UObject
 {
 	GENERATED_BODY()
@@ -27,5 +27,6 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	UTexture2D* Thumbnail;
+	
 	
 };
