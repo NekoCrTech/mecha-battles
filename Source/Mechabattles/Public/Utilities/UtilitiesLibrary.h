@@ -6,9 +6,8 @@
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "UtilitiesLibrary.generated.h"
 
-/**
- * 
- */
+enum class EColorEnum : uint8;
+
 UCLASS()
 class MECHABATTLES_API UUtilitiesLibrary : public UBlueprintFunctionLibrary
 {
@@ -24,5 +23,8 @@ public:
 
 	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "Utilities")
 	static bool IsTileTypeWalkable(ETileType InTileType);
+
+	UFUNCTION(BlueprintCallable,BlueprintPure, Category = "Utilities")
+	static FLinearColor GetColorFromEnum (EColorEnum Color);
 	
 };

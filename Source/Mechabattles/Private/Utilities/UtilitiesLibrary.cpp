@@ -3,6 +3,7 @@
 
 #include "Utilities/UtilitiesLibrary.h"
 #include "Grid/TileData.h"
+#include "Utilities/ColorEnum.h"
 
 FVector UUtilitiesLibrary::SnapVectorToVector(FVector A, FVector B)
 {
@@ -30,4 +31,19 @@ bool UUtilitiesLibrary::IsTileTypeWalkable(ETileType InTileType)
 {
 	if (InTileType == ETileType::None || InTileType == ETileType::Obstacle) return false;
 	return true;
+}
+
+FLinearColor UUtilitiesLibrary::GetColorFromEnum(EColorEnum Color)
+{
+	switch (Color)
+	{
+		case EColorEnum::None : return FLinearColor::Transparent;
+		case EColorEnum::Red :  return FLinearColor::Red;
+		case EColorEnum::Green : return FLinearColor::Green;
+		case EColorEnum::Blue :	return FLinearColor::Blue;
+		case EColorEnum::Yellow : return FLinearColor::Yellow;
+		case EColorEnum::White : return FLinearColor::White;
+		case EColorEnum::Black : return FLinearColor::Black;
+		default: return FLinearColor::Transparent;
+	}
 }
