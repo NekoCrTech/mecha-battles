@@ -3,13 +3,15 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Data/TechnicState.h"
+#include "Data/TechnicType.h"
 #include "Mecha/MechaData.h"
 #include "Technic.generated.h"
 
 /**
  * 
  */
-UCLASS(BlueprintType)
+UCLASS(BlueprintType, Blueprintable)
 class MECHABATTLES_API UTechnic : public UObject
 {
 	GENERATED_BODY()
@@ -27,5 +29,10 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	UTexture2D* Thumbnail;
-	
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	ETechnicState State = ETechnicState::Locked;
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	ETechnicType Type = ETechnicType::Active;
 };
