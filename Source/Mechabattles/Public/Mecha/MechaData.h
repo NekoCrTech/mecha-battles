@@ -9,7 +9,7 @@ enum class ETileType : uint8;
 class AMechaPart;
 
 UENUM(BlueprintType)
-enum class EEquipmentSlot : uint8
+enum class EEquipmentSlotType : uint8
 {
 	Head	UMETA(DisplayName = "Head"),
 	Hand	UMETA(DisplayName = "Hand"),

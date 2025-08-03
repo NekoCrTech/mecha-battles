@@ -34,7 +34,7 @@ struct FMechaPartStruct : public FTableRowBase
 	FMechaStats Stats = FMechaStats(0);
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Data")
-	EEquipmentSlot EquipmentSlot = EEquipmentSlot::Core;
+	EEquipmentSlotType EquipmentSlot = EEquipmentSlotType::Core;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Data")
 	TArray<UTechnic*> Technics;
@@ -91,8 +91,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	bool RemoveTechnic(UTechnic* Technic);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, BlueprintPure)
 	FORCEINLINE FMechaStats GetStats() {return MechaPartData.Stats;}
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	FORCEINLINE TArray<UTechnic*> GetTechnics() {return MechaPartData.Technics;}
 
 protected:
 	
