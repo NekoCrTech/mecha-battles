@@ -2,7 +2,6 @@
 
 
 #include "Mecha/Technic/TechnicComponent.h"
-#include "Mecha/Technic/TechnicDataAsset.h"
 
 UTechnicComponent::UTechnicComponent()
 {
