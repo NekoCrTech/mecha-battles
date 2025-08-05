@@ -27,14 +27,14 @@ class MECHABATTLES_API UMechaPartComponent : public UActorComponent
 public:	
 	UMechaPartComponent();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Data)
-	TMap<EEquipmentSlot, AMechaPart*> EquippedParts;
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Data)
+	// TMap<EEquipmentSlot, AMechaPart*> EquippedParts;
 
-	UFUNCTION(BlueprintCallable)
-	AMechaPart* EquipPart(EEquipmentSlot InSlot, AMechaPart* InPart);
-
-	UFUNCTION(BlueprintCallable)
-	AMechaPart* UnequipPart(EEquipmentSlot InSlot);
+	// UFUNCTION(BlueprintCallable)
+	// AMechaPart* EquipPart(EEquipmentSlot InSlot, AMechaPart* InPart);
+	//
+	// UFUNCTION(BlueprintCallable)
+	// AMechaPart* UnequipPart(EEquipmentSlot InSlot);
 	
 protected:
 	virtual void BeginPlay() override;

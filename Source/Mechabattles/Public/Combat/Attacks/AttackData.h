@@ -124,7 +124,7 @@ struct FAttackData : public FTableRowBase
 	GENERATED_BODY()
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attack)
-	FText AttackID = FText();
+	FText AttackID = FText::FromString("None");
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attack)
 	FAttackAssets Assets = FAttackAssets();

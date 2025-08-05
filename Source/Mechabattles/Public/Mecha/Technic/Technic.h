@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Combat/Attacks/AttackData.h"
 #include "Data/TechnicState.h"
-#include "Data/TechnicType.h"
 #include "Mecha/MechaData.h"
 #include "Technic.generated.h"
 
@@ -22,9 +22,6 @@ public:
 	FText Name = FText();
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	bool bIsActive = false;
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	FMechaStats BonusStats;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
@@ -34,5 +31,6 @@ public:
 	ETechnicState State = ETechnicState::Locked;
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	ETechnicType Type = ETechnicType::Active;
+	FAttackData AttackData = FAttackData();
+
 };
